@@ -1,0 +1,11 @@
+[Unit]
+Description=Nextcloud Container
+
+[Container]
+Image=p-nextcloud.build
+ContainerName=nextcloud
+ServiceName=pc-nextcloud
+Pod=p-nextcloud.pod
+
+[Install]
+WantedBy=multi-user.target

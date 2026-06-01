@@ -1,0 +1,12 @@
+[Unit]
+Description=PHP Container
+
+[Container]
+Image=p-php.build
+ContainerName=nextcloud-php
+ServiceName=pc-nextcloud-php
+Pod=p-nextcloud.pod
+Mount=type=image,source=nextcloud,destination=/usr/local/share/nextcloud,subpath=/usr/local/share/nextcloud,rw=true
+
+[Install]
+WantedBy=multi-user.target

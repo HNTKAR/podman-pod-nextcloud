@@ -1,0 +1,11 @@
+[Unit]
+Description=Nextcloud Pod
+
+[Pod]
+ServiceName=pp-nextcloud
+PodName=nextcloud
+Network=p-internal.network
+Network=p-external.network
+
+[Install]
+WantedBy=default.target

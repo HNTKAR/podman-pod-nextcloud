@@ -1,0 +1,7 @@
+[Unit]
+Description=Build Nextcloud Container
+
+[Build]
+SetWorkingDirectory=WORKING_DIR_PATH
+ServiceName=pb-nextcloud
+ImageTag=nextcloud
