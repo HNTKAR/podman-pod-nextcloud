@@ -1,0 +1,8 @@
+[Unit]
+Description=Build PHP Container
+
+[Build]
+SetWorkingDirectory=WORKING_DIR_PATH
+File=php.Containerfile
+ServiceName=pb-nextcloud-php
+ImageTag=nextcloud-php

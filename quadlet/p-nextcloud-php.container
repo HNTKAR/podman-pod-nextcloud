@@ -2,7 +2,7 @@
 Description=PHP Container
 
 [Container]
-Image=p-php.build
+Image=p-nextcloud-php.build
 ContainerName=nextcloud-php
 ServiceName=pc-nextcloud-php
 Pod=p-nextcloud.pod

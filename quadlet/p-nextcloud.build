@@ -3,5 +3,6 @@ Description=Build Nextcloud Container
 
 [Build]
 SetWorkingDirectory=WORKING_DIR_PATH
+File=nextcloud.Containerfile
 ServiceName=pb-nextcloud
 ImageTag=nextcloud
