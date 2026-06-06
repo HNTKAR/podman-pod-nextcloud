@@ -1,15 +1,25 @@
 FROM docker.io/php:8.5-rc-fpm-alpine3.22
 
 RUN apk upgrade && apk add --no-cache \
+    autoconf \
+    gcc \
+    g++ \
+    imagemagick-dev \
+    libtool \
+    make \
     curl-dev \
+    freetype-dev \
     libxml2-dev \
     lexbor-dev \
     libpng-dev \
     oniguruma-dev \
     libzip-dev \
     icu-dev \
-    libsodium-dev
+    libsodium-dev \
+    gmp-dev \
+    imagemagick-svg
 
+RUN docker-php-ext-configure gd --with-freetype
 
 RUN docker-php-ext-install -j8 \
     ctype \
@@ -26,7 +36,12 @@ RUN docker-php-ext-install -j8 \
     intl \
     sodium \
     sysvsem \
-    pcntl
+    pcntl \
+    exif \
+    gmp
+
+RUN pecl install imagick apcu \
+    && docker-php-ext-enable imagick apcu
 
 RUN addgroup -g 101 php && \
     adduser -D -G php -u 101 php
