@@ -40,8 +40,8 @@ RUN docker-php-ext-install -j8 \
     exif \
     gmp
 
-RUN pecl install imagick apcu \
-    && docker-php-ext-enable imagick apcu
+RUN pecl install imagick apcu redis \
+    && docker-php-ext-enable imagick apcu redis
 
 RUN addgroup -g 101 php && \
     adduser -D -G php -u 101 php

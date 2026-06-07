@@ -8,21 +8,27 @@ RUN apk add --no-cache \
     zlib-dev \
     libpng-dev \
     freetype-dev \
-    libzip-dev
+    libzip-dev \
+    autoconf \
+    gcc \
+    g++ \
+    make \
+    sudo
 
 RUN docker-php-ext-configure gd --with-freetype && \
     docker-php-ext-install -j8 \
         gd \
         zip \
         pdo_mysql
+RUN pecl install apcu redis \
+    && docker-php-ext-enable apcu redis
 
-COPY ["setup/run.sh", "/usr/local/bin/"]
+COPY ["setup/run.sh", "setup/run-php.sh", "/usr/local/bin/"]
 COPY ["setup/*.sql", "/usr/local/share/"]
-RUN chmod +x /usr/local/bin/run.sh
+RUN chmod +x /usr/local/bin/run.sh /usr/local/bin/run-php.sh
 
 RUN addgroup -g 101 php && \
     adduser -D -G php -u 101 php
 
-USER php
 WORKDIR /data
 ENTRYPOINT ["/usr/local/bin/run.sh"]
