@@ -1,4 +1,4 @@
-FROM docker.io/php:8.5-rc-fpm-alpine3.22
+FROM docker.io/php:8.4-fpm-alpine
 
 RUN apk upgrade && apk add --no-cache \
     autoconf \
@@ -46,7 +46,7 @@ RUN pecl install imagick apcu \
 RUN addgroup -g 101 php && \
     adduser -D -G php -u 101 php
 
-WORKDIR /
+WORKDIR /data
 
 COPY ["php/config/zz-fpm-user.conf", "/usr/local/etc/php-fpm.d/zz-fpm-user.conf"]
 COPY ["php/config/php.ini", "/usr/local/etc/php/php.ini"]

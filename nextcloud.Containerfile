@@ -7,6 +7,7 @@ RUN rm -rf /usr/local/lib/conf/default.conf
 # ADD https://download.nextcloud.com/server/releases/latest.zip /opt/
 COPY tmp/latest.zip /usr/local/share/
 
+COPY ["tmp/latest.zip", "/usr/local/share/"]
 COPY ["nextcloud/config/*.conf", "/usr/local/lib/conf/"]
 COPY ["nextcloud/additional.sh", "/usr/local/bin/"]
 RUN chmod 770 /usr/local/bin/additional.sh

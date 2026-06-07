@@ -1,0 +1,12 @@
+[Unit]
+Description=setup nextcloud pod
+
+[Container]
+Image=p-nextcloud-setup.build
+ContainerName=nextcloud-setup
+ServiceName=pc-nextcloud-setup
+Pod=p-nextcloud.pod
+Mount=type=volume,source=p-nextcloud.volume,destination=/data,U=false
+
+[Install]
+WantedBy=multi-user.target

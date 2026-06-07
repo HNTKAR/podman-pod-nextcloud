@@ -1,0 +1,8 @@
+[Unit]
+Description=setup nextcloud pod
+
+[Build]
+SetWorkingDirectory=WORKING_DIR_PATH
+File=setup.Containerfile
+ServiceName=pb-nextcloud-setup
+ImageTag=nextcloud-setup
