@@ -1,5 +1,4 @@
 FROM nginx-common:latest
-ENV GROUP=www-data
 
 RUN apk upgrade && apk add --no-cache zip
 RUN rm -rf /usr/local/lib/conf/default.conf

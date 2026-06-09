@@ -1,23 +1,17 @@
-FROM docker.io/php:8.5-fpm-alpine
+# FROM docker.io/php:8.5-fpm-alpine
+FROM docker.io/php:8.5-fpm
 
-RUN apk upgrade && apk add --no-cache \
-    autoconf \
-    gcc \
-    g++ \
-    imagemagick-dev \
-    libtool \
-    make \
-    curl-dev \
-    freetype-dev \
-    libxml2-dev \
-    lexbor-dev \
+RUN apt update && apt upgrade -y && apt install -y \
+    zlib1g-dev \
     libpng-dev \
-    oniguruma-dev \
+    libfreetype6-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    golang-github-go-enry-go-oniguruma-dev \
     libzip-dev \
-    icu-dev \
+    libicu-dev \
     libsodium-dev \
-    gmp-dev \
-    imagemagick-svg
+    libmagick++-dev
 
 RUN docker-php-ext-configure gd --with-freetype
 
@@ -43,8 +37,8 @@ RUN docker-php-ext-install -j8 \
 RUN pecl install imagick apcu redis \
     && docker-php-ext-enable imagick apcu redis
 
-RUN addgroup -g 1101 nginx-user && \
-    adduser -D -G nginx-user -u 1101 nginx-user
+RUN groupadd -g 1101 nginx-user && \
+    useradd -u 1101 -g 1101 nginx-user
 
 WORKDIR /data
 
