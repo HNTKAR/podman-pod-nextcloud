@@ -8,6 +8,6 @@ if [ "$1" = "reset" ]; then
 else
     echo "setting up nextcloud..."
     mariadb -u root -h $DB_HOST -p$DB_PASSWORD < /usr/local/share/createDB.sql
-    sudo -u php /usr/local/bin/run-php.sh
+    su nginx-user -c "/usr/local/bin/run-php.sh"
     echo "Done."
 fi

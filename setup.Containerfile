@@ -27,8 +27,8 @@ COPY ["setup/run.sh", "setup/run-php.sh", "/usr/local/bin/"]
 COPY ["setup/*.sql", "/usr/local/share/"]
 RUN chmod +x /usr/local/bin/run.sh /usr/local/bin/run-php.sh
 
-RUN addgroup -g 101 php && \
-    adduser -D -G php -u 101 php
+RUN addgroup -g 1101 nginx-user && \
+    adduser -D -G nginx-user -u 1101 nginx-user
 
 WORKDIR /data
 ENTRYPOINT ["/usr/local/bin/run.sh"]
